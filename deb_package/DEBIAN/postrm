@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cat /etc/passwd | grep '/home/' | \
+grep -v 'cups\|syslog' | cut -d ':' -f 6 > /tmp/homes.list
+
+while read BASEDIR; do
+    rm -rf "$BASEDIR/.goldendict/"
+done < /tmp/homes.list

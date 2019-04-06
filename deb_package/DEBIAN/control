@@ -1,0 +1,14 @@
+Package: goldendict-extras-pt
+Version: 0.1
+Priority:
+Architecture: all
+Essential:
+Depends: goldendict
+Pre-depends:
+Suggests:
+Installed-Size:
+Maintainer: Crash and Eddie
+Conflicts:
+Replaces:
+Provides:
+Description: Dicionários em Português para o GoldenDict.
