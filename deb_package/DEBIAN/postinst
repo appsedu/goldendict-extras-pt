@@ -1,9 +1,17 @@
 #!/bin/bash
 
 cat /etc/passwd | grep '/home/' | \
-grep -v 'cups\|syslog' | cut -d ':' -f 6 > /tmp/homes.list
+grep -v 'cups\|syslog' | cut -d ':' -f 1 > /tmp/homes.list
 
-while read BASEDIR; do
-    cp -rf /tmp/.goldendict "$BASEDIR/"
-    chmod 777 -R "$BASEDIR/.goldendict/"
+while read USUARIO; do
+	runuser -l $USUARIO -c "cp -rf /tmp/.goldendict /home/$USUARIO/"
+	runuser -l $USUARIO -c "mkdir -p /home/$USUARIO/.config/menus/applications-merged/"
+	runuser -l $USUARIO -c \
+	"cp -rf /tmp/education-Languages.directory /home/$USUARIO/.local/share/desktop-directories/"
+	runuser -l $USUARIO -c \
+	"cp -rf /tmp/goldendict.menu /home/$USUARIO/.config/menus/applications-merged/"
+	runuser -l $USUARIO -c \
+	"cp -rf /tmp/goldendict.desktop /home/$USUARIO/.local/share/applications/"
+	runuser -l $USUARIO -c "rm -rf /home/$USUARIO/.cache/"
+	su - $USUARIO -c "lxpanelctl restart"
 done < /tmp/homes.list

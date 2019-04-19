@@ -5,4 +5,6 @@ grep -v 'cups\|syslog' | cut -d ':' -f 6 > /tmp/homes.list
 
 while read BASEDIR; do
     rm -rf "$BASEDIR/.goldendict/"
+    rm -rf "$BASEDIR/.local/share/applications/goldendict.desktop"
+    rm -rf "$BASEDIR/.config/menus/applications-merged/goldendict.menu"
 done < /tmp/homes.list
