@@ -7,4 +7,5 @@ while read BASEDIR; do
     rm -rf "$BASEDIR/.goldendict/"
     rm -rf "$BASEDIR/.local/share/applications/goldendict.desktop"
     rm -rf "$BASEDIR/.config/menus/applications-merged/goldendict.menu"
+    rm -rf "$BASEDIR/Desktop/goldendict.desktop"
 done < /tmp/homes.list
