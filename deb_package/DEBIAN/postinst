@@ -26,9 +26,10 @@ while read USUARIO; do
 	runuser -l $USUARIO -c \
 	"cp -rf /tmp/goldendict.desktop /home/$USUARIO/.local/share/applications/"
 
-	geraShort /tmp/goldendict.desktop \
-	/home/$USUARIO/.local/share/applications/goldendict.desktop \
-	> /home/$USUARIO/Desktop/goldendict.desktop
+	# geraShort /tmp/goldendict.desktop \
+	# /home/$USUARIO/.local/share/applications/goldendict.desktop \
+	# > /home/$USUARIO/Desktop/goldendict.desktop
+	cp /home/$USUARIO/.local/share/applications/goldendict.desktop /home/$USUARIO/Desktop/goldendict.desktop
 
 	runuser -l $USUARIO -c "rm -rf /home/$USUARIO/.cache/"
 	if [ -f /usr/bin/lxpanelctl ]; then
