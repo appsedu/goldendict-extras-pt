@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Name=GoldenDict
-GenericName=Multiformat Dictionary
-Comment=GoldenDict
-Encoding=UTF-8
-Icon=goldendict
-Exec=goldendict

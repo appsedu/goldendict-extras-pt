@@ -3,33 +3,10 @@
 cat /etc/passwd | grep '/home/' | \
 grep -v 'cups\|syslog' | cut -d ':' -f 1 > /tmp/homes.list
 
-function geraShort {
-	echo "[Desktop Entry]"
-	echo "Type=Link"
-	cat $1 | \
-	grep "Name=" | head -n1
-	cat $1 | \
-	grep "Name[pt_BR]=" | head -n1
-	cat $1 | \
-	grep "Icon=" | head -n1
-	echo "URL=$2"
-}
-
 while read USUARIO; do
 	runuser -l $USUARIO -c "cp -rf /tmp/.goldendict /home/$USUARIO/"
-	runuser -l $USUARIO -c "mkdir -p /home/$USUARIO/.config/menus/applications-merged/"
-	runuser -l $USUARIO -c "mkdir -p /home/$USUARIO/.local/share/desktop-directories/"
-	runuser -l $USUARIO -c \
-	"cp -rf /tmp/education-Languages.directory /home/$USUARIO/.local/share/desktop-directories/"
-	runuser -l $USUARIO -c \
-	"cp -rf /tmp/goldendict.menu /home/$USUARIO/.config/menus/applications-merged/"
-	runuser -l $USUARIO -c \
-	"cp -rf /tmp/goldendict.desktop /home/$USUARIO/.local/share/applications/"
-
-	# geraShort /tmp/goldendict.desktop \
-	# /home/$USUARIO/.local/share/applications/goldendict.desktop \
-	# > /home/$USUARIO/Desktop/goldendict.desktop
-	cp /home/$USUARIO/.local/share/applications/goldendict.desktop /home/$USUARIO/Desktop/goldendict.desktop
+	
+	cp /usr/share/applications/goldendict.desktop /home/$USUARIO/Desktop/goldendict.desktop
 
 	runuser -l $USUARIO -c "rm -rf /home/$USUARIO/.cache/"
 	if [ -f /usr/bin/lxpanelctl ]; then
